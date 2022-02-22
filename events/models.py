@@ -1,12 +1,8 @@
 from django.db import models
 
 class Events(models.Model):
-	event = models.CharField(max_length=255)
-	game = models.CharField(max_length=255)
-	place = models.CharField(max_length=128)
-	date = models.DateField()
-	time = models.TimeField()
-
+	student_id = models.TextField(default='')
+	text = models.TextField(default='')
 	def __str__(self):
-		return self.event
+		return self.text[:5]
 # Create your models here.
