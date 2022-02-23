@@ -64,9 +64,11 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
     'https://lms.tuit.uz',
+    'https://jahanbaev.github.io/portfolio/',
 )
 CORS_ALLOWED_ORIGINS = [
     'https://lms.tuit.uz',
+    'https://jahanbaev.github.io/portfolio/',
 ]
 
 ROOT_URLCONF = 'apifornode.urls'
