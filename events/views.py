@@ -16,3 +16,11 @@ def bodyText(request, pk):
 	text = Events.objects.get(pk=pk)
 
 	return HttpResponse(text) #render(request, 'textShow/text.html/', {'text': text, events:events})
+
+def byName(request, name):
+	idname = Events.objects.filter(student_id=name)
+	names = []
+	for i in range(len(idname)):
+		names.append(idname[i].id)
+	print(names)
+	return HttpResponse(str(names))
