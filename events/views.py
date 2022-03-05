@@ -23,4 +23,5 @@ def byName(request, name):
 	for i in range(len(idname)):
 		names.append(idname[i].id)
 	print(names)
+	names.sort()
 	return HttpResponse(str(names))
