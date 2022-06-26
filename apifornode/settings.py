@@ -65,13 +65,13 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
     'https://lms.tuit.uz',
     'https://jahanbaev.github.io/portfolio/admin',
-    'https://jahanbaev-admin.github.io/view/',
+    'https://jahanbaev-admin.github.io/view',
     'https://github.com',
 )
 CORS_ALLOWED_ORIGINS = [
     'https://lms.tuit.uz',
     'https://jahanbaev.github.io',
-    'https://jahanbaev-admin.github.io/view/',
+    'https://jahanbaev-admin.github.io',
     'https://github.com',
 ]
 
