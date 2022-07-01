@@ -38,4 +38,4 @@ def byName(request, name):
 	
 def delApi(request):
 	ids = Events.objects.all()
-	return HttpResponse([x.id for x in range(len(ids))])
+	return HttpResponse([ids[x].id for x in range(len(ids))])
