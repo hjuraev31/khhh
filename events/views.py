@@ -18,10 +18,12 @@ def bodyText(request, pk):
 	return HttpResponse(text) #render(request, 'textShow/text.html/', {'text': text, events:events})
 
 def byName(request, name):
-	idname = Events.objects.filter(student_id=name)
-	names = []
-	for i in range(len(idname)):
-		names.append(idname[i].id)
-	print(names)
-	names.sort()
+	groupStudent = ["Samandarbek","Saydiabzal","Abrorbek","Begimqulov","Xusniddin","Faxriddin","Xikmatov","Seitov","Dostonbek","Madinabonu","Anvarjonov","Jaxongir","Berdiyorov","Sayidov","Ibrohimov"]
+	if name in groupStudent:
+		idname = Events.objects.filter(student_id=name)
+		names = []
+		for i in range(len(idname)):
+			names.append(idname[i].id)
+		print(names)
+		names.sort()
 	return HttpResponse(str(names))
