@@ -12,6 +12,10 @@ class DetailEvent(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Events.objects.all()
 	serializer_class = EventsSerializer
 
+class DeleteDataBase(generics.DestroyAPIView):
+	queryset = Events.objects.all()
+	serializer_class = EventsSerializer
+
 def bodyText(request, pk):
 	events = Events.objects.filter(pk=pk)
 	text = Events.objects.get(pk=pk)
