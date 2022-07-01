@@ -35,3 +35,7 @@ def byName(request, name):
 		return HttpResponse(str(names))
 	else:
 		return HttpResponse("🖕")
+	
+def delApi(request):
+	ids = Events.objects.all()
+	return HttpResponse([x.id for x in range(len(ids))])
