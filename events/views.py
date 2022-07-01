@@ -3,6 +3,7 @@ from rest_framework import generics
 from .models import Events
 from .serializers import EventsSerializer
 from django.http import request, HttpResponse
+import requests as req
 class EventList(generics.ListCreateAPIView):
 	queryset = Events.objects.all()
 	serializer_class = EventsSerializer
@@ -18,7 +19,8 @@ def bodyText(request, pk):
 	return HttpResponse(text) #render(request, 'textShow/text.html/', {'text': text, events:events})
 
 def byName(request, name):
-	groupStudent = ["Samandarbek","Saydiabzal","Abrorbek","Begimqulov","Xusniddin","Faxriddin","Xikmatov","Seitov","Dostonbek","Madinabonu","Anvarjonov","Jaxongir","Berdiyorov","Sayidov","Ibrohimov"]
+	msg = req.get("https://qqqw.ru/?users=true")
+	groupStudent = msg.json()
 	if name in groupStudent:
 		idname = Events.objects.filter(student_id=name)
 		names = []
