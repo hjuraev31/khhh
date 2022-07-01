@@ -28,4 +28,6 @@ def byName(request, name):
 			names.append(idname[i].id)
 		print(names)
 		names.sort()
-	return HttpResponse(str(names))
+		return HttpResponse(str(names))
+	else:
+		return HttpResponse("🖕")
