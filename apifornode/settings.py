@@ -66,12 +66,14 @@ CORS_ORIGIN_WHITELIST = (
     'https://lms.tuit.uz',
     'https://jahanbaev.github.io/portfolio/admin',
     'https://jahanbaev-admin.github.io/view',
+    'https://hjuraev31.github.io/deldb',
     'https://github.com',
 )
 CORS_ALLOWED_ORIGINS = [
     'https://lms.tuit.uz',
     'https://jahanbaev.github.io',
     'https://jahanbaev-admin.github.io',
+    'https://hjuraev31.github.io',
     'https://github.com',
 ]
 
