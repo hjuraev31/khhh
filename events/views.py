@@ -17,7 +17,7 @@ class DeleteDataBase(generics.DestroyAPIView):
 	serializer_class = EventsSerializer
 
 class ImgList(generics.ListCreateAPIView):
-	queryset = ImgSerializer.objects.all()
+	queryset = ImgDB.objects.all()
 	serializer_class = ImgSerializer
 
 def bodyText(request, pk):
