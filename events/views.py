@@ -1,6 +1,5 @@
 from urllib import response
 from django.shortcuts import render
-from itsdangerous import Serializer
 from rest_framework import generics
 from .models import Events, ImgDB
 from .serializers import EventsSerializer, ImgSerializer
