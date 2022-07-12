@@ -6,6 +6,8 @@ from .views import (
 	DetailEvent, 
 	DeleteDataBase, 
 	ImgList, 
+	ImageAPIView,
+	studimg,
 	bodyText, 
 	byName, 
 	delApi,
@@ -17,6 +19,8 @@ urlpatterns = [
 	path('<int:pk>/', DetailEvent.as_view(), name='detailevent'),
 	path('deleteDataBase/',delApi, name='deleteDB'),
 	path('img/', ImgList.as_view(), name='save_img'),
+	path('showimg/<int:id>/', ImageAPIView.as_view(), name='img_api_id'),
+	path('studentimg/<str:name>/', studimg, name='filterByName'),
 	path('', EventList.as_view(), name='eventlist'),
 ]
 if settings.DEBUG:
