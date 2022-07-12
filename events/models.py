@@ -5,4 +5,10 @@ class Events(models.Model):
 	text = models.TextField(default='')
 	def __str__(self):
 		return str(self.text)
-# Create your models here.
+
+class ImgDB(models.Model):
+	name = models.TextField(default='')
+	img = models.ImageField(upload_to ='uploads/%Y/%m/%d/')
+
+	def __str__(self):
+		return self.name

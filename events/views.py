@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Events
-from .serializers import EventsSerializer
+from .models import Events, ImgDB
+from .serializers import EventsSerializer, ImgSerializer
 from django.http import request, HttpResponse
 import requests as req
 class EventList(generics.ListCreateAPIView):
@@ -15,6 +15,10 @@ class DetailEvent(generics.RetrieveUpdateDestroyAPIView):
 class DeleteDataBase(generics.DestroyAPIView):
 	queryset = Events.objects.all()
 	serializer_class = EventsSerializer
+
+class ImgList(generics.ListCreateAPIView):
+	queryset = ImgDB.objects.all()
+	serializer_class = ImgSerializer
 
 def bodyText(request, pk):
 	events = Events.objects.filter(pk=pk)
