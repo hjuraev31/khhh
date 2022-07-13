@@ -28,15 +28,15 @@ class ImgList(generics.ListCreateAPIView):
 		
 
 class ImageAPIView(generics.RetrieveAPIView):
+	imgData = ImgDB.objects.all()
+	queryset = ImgDB.objects.get(id = min(imgData.id))
+	renderer_classes = [JPEGRenderer]
 
-    queryset = ImgDB.objects.all()
-    renderer_classes = [JPEGRenderer]
-
-    def get(self, request, *args, **kwargs):
-        renderer_classes = [JPEGRenderer]
-        queryset = ImgDB.objects.get(id=self.kwargs['id']).img
-        data = queryset
-        return Response(data, content_type='image/jpg')
+	def get(self, request, *args, **kwargs):
+		renderer_classes = [JPEGRenderer]
+		queryset = ImgDB.objects.get(id=self.kwargs['id']).img
+		data = queryset
+		return Response(data, content_type='image/jpg')
 
 @api_view(['POST'])
 def post_data(request):
