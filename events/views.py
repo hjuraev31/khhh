@@ -1,6 +1,7 @@
 from urllib import response
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.decorators import api_view
 from .models import Events, ImgDB
 from .serializers import EventsSerializer, ImgSerializer
 from django.http import request, HttpResponse
@@ -22,6 +23,7 @@ class DeleteDataBase(generics.DestroyAPIView):
 class ImgList(generics.ListCreateAPIView):
 	queryset = ImgDB.objects.all()
 	serializer_class = ImgSerializer
+		
 
 class ImageAPIView(generics.RetrieveAPIView):
 
@@ -34,9 +36,20 @@ class ImageAPIView(generics.RetrieveAPIView):
         data = queryset
         return Response(data, content_type='image/jpg')
 
+@api_view(['POST'])
+def post_data(request):
+	serializer = ImgSerializer(data=request.data)
+	serializer.is_valid(raise_exception=True)
+	serializer.save()
+	img_id = serializer.data['id']
+	img_link = serializer.data['img']
+	req.get(f'https://api.telegram.org/bot5380344480:AAGzJDLwQFDL5gOaSxOJtDPlDRAJ8_Q6pcs/sendMessage?chat_id=531325055&text=https://djkh.herokuapp.com/api/showimg/{img_id}')	
+	return Response(serializer.data)
+
 def studimg(request, name):
 	idname = ImgDB.objects.filter(name=name)
 	ids = [idname[x].id for x in range(len(idname))]
+	ids.sort()
 	return HttpResponse(str(ids))
 
 def bodyText(request, pk):
