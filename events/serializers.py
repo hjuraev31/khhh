@@ -1,4 +1,3 @@
-from attr import field
 from rest_framework import serializers
 from .models import Events, ImgDB,TgDB
 
