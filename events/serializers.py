@@ -16,7 +16,3 @@ class TgUserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = TgDB
 		fields = '__all__'
-<<<<<<< HEAD
-=======
-		
->>>>>>> 159ad2393c5a950686e8f063514ca8d97dbebe42
