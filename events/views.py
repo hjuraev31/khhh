@@ -28,8 +28,7 @@ class ImgList(generics.ListCreateAPIView):
 		
 
 class ImageAPIView(generics.RetrieveAPIView):
-
-	# queryset = ImgDB.objects.get(id = imgData.id)
+	queryset = ImgDB.objects.get(id = 4)
 	renderer_classes = [JPEGRenderer]
 
 	def get(self, request, *args, **kwargs):
