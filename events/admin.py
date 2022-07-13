@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Events, ImgDB
+from .models import Events, ImgDB, TgDB
 
 admin.site.register(Events)
 admin.site.register(ImgDB)
-# Register your models here.
+admin.site.register(TgDB)

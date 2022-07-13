@@ -7,6 +7,7 @@ from .views import (
 	DeleteDataBase, 
 	ImgList, 
 	ImageAPIView,
+	TgUsers,
 	post_data,
 	studimg,
 	bodyText, 
@@ -23,6 +24,7 @@ urlpatterns = [
 	path('showimg/<int:id>/', ImageAPIView.as_view(), name='img_api_id'),
 	path('studentimg/<str:name>/', studimg, name='filterByName'),
 	path('v2/showimg/',post_data,name='post_img'),
+	path('tgusers/', TgUsers.as_view(), name='tg_users'),
 	path('', EventList.as_view(), name='eventlist'),
 ]
 if settings.DEBUG:

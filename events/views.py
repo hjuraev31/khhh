@@ -2,11 +2,13 @@ from urllib import response
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.decorators import api_view
-from .models import Events, ImgDB
-from .serializers import EventsSerializer, ImgSerializer
+from .models import Events, ImgDB, TgDB
+from .serializers import EventsSerializer, ImgSerializer, TgUserSerializer
 from django.http import request, HttpResponse
 from rest_framework.response import Response
 from .custom_renderers import JPEGRenderer, PNGRenderer
+from django.shortcuts import get_object_or_404
+
 import requests as req
 class EventList(generics.ListCreateAPIView):
 	queryset = Events.objects.all()
@@ -42,15 +44,25 @@ def post_data(request):
 	serializer.is_valid(raise_exception=True)
 	serializer.save()
 	img_id = serializer.data['id']
-	img_link = serializer.data['img']
-	req.get(f'https://api.telegram.org/bot5380344480:AAGzJDLwQFDL5gOaSxOJtDPlDRAJ8_Q6pcs/sendMessage?chat_id=531325055&text=https://djkh.herokuapp.com/api/showimg/{img_id}')	
+	names = serializer.data['name']
+	user = TgDB.objects.get(name=names)
+	if user.status == True:
+		req.get(f'https://api.telegram.org/bot5380344480:AAGzJDLwQFDL5gOaSxOJtDPlDRAJ8_Q6pcs/sendMessage?chat_id={user.chat_id}&text=https://djkh.herokuapp.com/api/showimg/{img_id}')	
+	else:
+		req.get(f'https://api.telegram.org/bot5380344480:AAGzJDLwQFDL5gOaSxOJtDPlDRAJ8_Q6pcs/sendMessage?chat_id={user.chat_id}&text=Verification failed')	  
 	return Response(serializer.data)
+
+class TgUsers(generics.ListCreateAPIView):
+	queryset = TgDB.objects.all()
+	serializer_class = TgUserSerializer
 
 def studimg(request, name):
 	idname = ImgDB.objects.filter(name=name)
 	ids = [idname[x].id for x in range(len(idname))]
 	ids.sort()
 	return HttpResponse(str(ids))
+
+
 
 def bodyText(request, pk):
 	events = Events.objects.filter(pk=pk)
